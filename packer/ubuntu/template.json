@@ -56,20 +56,6 @@
     {
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "scripts/vagrant-createuser.sh"
-      ],
-      "type": "shell"
-    },
-    {
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
-      "scripts": [
-        "scripts/vagrant.sh"
-      ],
-      "type": "shell"
-    },
-    {
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
-      "scripts": [
         "scripts/update.sh"
       ],
       "type": "shell"
