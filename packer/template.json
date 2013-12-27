@@ -1,5 +1,31 @@
 {
   "builders": [
+   {
+     "type": "qemu",
+     "accelerator": "kvm",
+     "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.3-server-amd64.iso",
+     "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
+     "iso_checksum_type": "md5",
+     "format": "qcow2",
+     "http_directory": "http",
+     "ssh_username": "ubuntu",
+     "ssh_password": "ubuntu",
+     "ssh_wait_timeout": "20m",
+     "boot_wait":"5s",
+     "shutdown_command": "echo 'ubuntu' | sudo -S shutdown -P now",
+     "boot_command": [
+       "<esc><esc><enter><wait>",
+     "/install/vmlinuz noapic ",
+     "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+     "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+     "hostname={{ .Name }} ",
+     "fb=false debconf/frontend=noninteractive ",
+     "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+     "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+     "initrd=/install/initrd.gz -- ",
+     "<enter>"],
+     "vm_name": "precise64" 
+    },
     {
       "boot_command": [
         "<esc><esc><enter><wait>",
@@ -24,13 +50,6 @@
       "ssh_wait_timeout": "30m",
       "type": "virtualbox-iso",
       "vm_name": "precise64"
-    }
-  ],
-  "post-processors": [
-    {
-      "keep_input_artifact": true,
-      "output": "precise64.box",
-      "type": "vagrant"
     }
   ],
   "provisioners": [
