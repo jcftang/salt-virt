@@ -1,4 +1,4 @@
 #!/bin/bash
-yum install install -y salt-minion salt-master salt-syndic salt-ssh
+yum install install -y salt-minion
 mkdir -p /etc/salt/pki/minion
 mkdir -p /etc/salt/pki/master
