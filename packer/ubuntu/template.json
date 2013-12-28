@@ -84,13 +84,6 @@
     {
       "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "scripts/docker.sh"
-      ],
-      "type": "shell"
-    },
-    {
-      "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
-      "scripts": [
         "scripts/vm_cleanup.sh"
       ],
       "type": "shell"
