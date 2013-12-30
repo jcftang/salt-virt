@@ -1,3 +1,4 @@
+{% if grains['osfullname'] in ('CentOS', 'RHEL', 'Oracle Linux Server') %}
 avahi:
   pkg:
     - installed
@@ -18,7 +19,7 @@ messagebus:
   service:
     - running
     - require:
-      - pkg: dbus 
+      - pkg: dbus
 
 avahi-dnsconfd:
   pkg:
@@ -31,3 +32,4 @@ avahi-dnsconfd:
 nss-mdns:
   pkg:
     - installed
+{% endif %}
