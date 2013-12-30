@@ -1,6 +1,3 @@
-libvirt_keys:
-  libvirt.keys
-
 libvirt:
   pkg:
     - installed

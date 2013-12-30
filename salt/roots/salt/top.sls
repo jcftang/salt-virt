@@ -1,5 +1,8 @@
 base:
   '*':
-    - common
+    - sshkeys
+
+  'lenny':
+    - keys
     - hypervisor
     - networking
