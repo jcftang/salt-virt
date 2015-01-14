@@ -1,6 +1,8 @@
 #!/bin/bash
 
-apt-get clean
+apt-get -y autoremove --purge
+apt-get -y clean
+apt-get -y autoclean
 
 # Removing leftover leases and persistent rules
 echo "cleaning up dhcp leases"
@@ -20,3 +22,5 @@ echo "pre-up sleep 2" >> /etc/network/interfaces
 #echo "Zeroing device to make space..."
 #dd if=/dev/zero of=/EMPTY bs=1M
 #rm -f /EMPTY
+
+sync
