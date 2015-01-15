@@ -1,0 +1,89 @@
+{
+  "builders": [
+   {
+     "type": "qemu",
+     "accelerator": "kvm",
+     "iso_url": "http://cdimage.debian.org/debian-cd/7.8.0/amd64/iso-cd/debian-7.8.0-amd64-CD-1.iso",
+     "iso_checksum": "cffe815030a7b5501e8ba40156581bbf327b9d50e592b92dec4145ebd5608300",
+     "iso_checksum_type": "sha256",
+     "format": "qcow2",
+     "http_directory": "http",
+     "ssh_username": "debian",
+     "ssh_password": "debian",
+     "ssh_wait_timeout": "20m",
+     "boot_wait":"5s",
+     "shutdown_command": "echo 'debian' | sudo -S shutdown -h now",
+     "boot_command": [
+       "<esc><wait>",
+       "install auto ",
+       "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+       "debian-installer/locale=en_US.UTF-8 ",
+       "debian-installer/keymap=us ",
+       "locale=en_US.UTF-8 ",
+       "keymap=us ",
+       "netcfg/get_hostname={{ .Name }} ",
+       "netcfg/get_domain=vm ",
+       "<enter>"],
+     "vm_name": "wheezy" 
+    },
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "install auto ",
+        "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+        "debian-installer/locale=en_US ",
+        "debian-installer/keymap=us ",
+        "locale=en_US ",
+        "keymap=us ",
+        "netcfg/get_hostname={{ .Name }} ",
+        "netcfg/get_domain=vm ",
+        "<enter>"
+      ],
+      "boot_wait": "5s",
+      "guest_additions_mode": "disable",
+      "guest_os_type": "Debian_64",
+      "hard_drive_interface": "sata",
+      "http_directory": "http",
+      "iso_url": "http://cdimage.debian.org/debian-cd/7.8.0/amd64/iso-cd/debian-7.8.0-amd64-CD-1.iso",
+      "iso_checksum": "cffe815030a7b5501e8ba40156581bbf327b9d50e592b92dec4145ebd5608300",
+      "iso_checksum_type": "sha256",
+      "shutdown_command": "echo 'debian' | sudo -S shutdown -h now",
+      "ssh_password": "debian",
+      "ssh_username": "debian",
+      "ssh_wait_timeout": "30m",
+      "type": "virtualbox-iso",
+      "vm_name": "wheezy"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "echo 'debian' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "scripts/update.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'debian' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "scripts/ansible.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'debian' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "scripts/salt.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'debian' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "scripts/vm_cleanup.sh"
+      ],
+      "type": "shell"
+    }
+  ]
+}
+
