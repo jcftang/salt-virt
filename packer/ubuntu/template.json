@@ -24,7 +24,7 @@
      "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
      "initrd=/install/initrd.gz -- ",
      "<enter>"],
-     "vm_name": "precise64" 
+     "vm_name": "precise"
     },
     {
       "boot_command": [
@@ -49,7 +49,7 @@
       "ssh_username": "ubuntu",
       "ssh_wait_timeout": "30m",
       "type": "virtualbox-iso",
-      "vm_name": "precise64"
+      "vm_name": "precise"
     }
   ],
   "provisioners": [
