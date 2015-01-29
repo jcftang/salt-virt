@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sed -i 's/^deb cdrom/# DISABLED deb/' /etc/apt/sources.list
+
 apt-get -y autoremove --purge
 apt-get -y clean
 apt-get -y autoclean
